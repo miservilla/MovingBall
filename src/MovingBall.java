@@ -29,15 +29,22 @@ public class MovingBall extends Application
         canvas.getChildren().add(sphere);
 
 
-        stage.setTitle("Bouncing Ball");
+        stage.setTitle("Moving Ball");
         stage.setScene(scene);
         stage.show();
 
         Bounds bounds = canvas.getBoundsInLocal();
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5),
-                new KeyValue(sphere.layoutYProperty(), bounds.getMaxY()-sphere.getRadius())));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+
+        Timeline timelineMinXToMaxX = new Timeline(new KeyFrame(Duration.seconds(5),
+                new KeyValue(sphere.layoutXProperty(), bounds.getMaxX() - sphere.getRadius())));
+        timelineMinXToMaxX.setCycleCount(Timeline.INDEFINITE); //Sets cycle to repeat indefinitely. Can substitute int.
+        timelineMinXToMaxX.play();
+
+        Timeline timelineMinYToMaxY = new Timeline(new KeyFrame(Duration.seconds(5),
+                new KeyValue(sphere.layoutYProperty(), bounds.getMaxY() - sphere.getRadius())));
+        timelineMinYToMaxY.setCycleCount(Timeline.INDEFINITE); //Sets cycle to repeat indefinitely. Can substitute int.
+        timelineMinYToMaxY.play();
+
     }
 
     public static void main(String[] args)
